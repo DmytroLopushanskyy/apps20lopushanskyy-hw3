@@ -14,12 +14,12 @@ public class MapDecorator extends SmartArrayDecorator {
             newArr[i] = func.apply(newArr[i]);
         }
 
-        this.smartArray = new BaseArray(newArr);
+        this.setSmartArray(new BaseArray(newArr));
     }
 
     @Override
     public Object[] toArray() {
-        return this.smartArray.toArray();
+        return this.getSmartArray().toArray();
     }
 
     @Override
@@ -29,6 +29,6 @@ public class MapDecorator extends SmartArrayDecorator {
 
     @Override
     public int size() {
-        return this.smartArray.size();
+        return this.getSmartArray().size();
     }
 }

@@ -1,14 +1,17 @@
 package ua.edu.ucu;
 
+import java.util.Arrays;
 import ua.edu.ucu.functions.MyComparator;
 import ua.edu.ucu.functions.MyFunction;
 import ua.edu.ucu.functions.MyPredicate;
-import ua.edu.ucu.smartarr.*;
-
-import java.util.Arrays;
+import ua.edu.ucu.smartarr.BaseArray;
+import ua.edu.ucu.smartarr.DistinctDecorator;
+import ua.edu.ucu.smartarr.FilterDecorator;
+import ua.edu.ucu.smartarr.MapDecorator;
+import ua.edu.ucu.smartarr.SmartArray;
+import ua.edu.ucu.smartarr.SortDecorator;
 
 public class SmartArrayApp {
-
     public static Integer[]
         filterPositiveIntegersSortAndMultiplyBy2(Integer[] integers) {
 
@@ -57,8 +60,8 @@ public class SmartArrayApp {
         MyPredicate select2ndYear = new MyPredicate() {
             @Override
             public boolean test(Object t) {
-                return ((Student) t).getYear() == 2 &&
-                        ((Student) t).getGPA() >= 4;
+                return ((Student) t).getYear() == 2
+                        && ((Student) t).getGPA() >= 4;
             }
         };
 

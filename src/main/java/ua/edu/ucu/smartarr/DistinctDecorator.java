@@ -12,11 +12,11 @@ public class DistinctDecorator extends SmartArrayDecorator {
         // Create this array
         Object[] newArr = createArray(counter);
 
-        this.smartArray = new BaseArray(newArr);
+        this.setSmartArray(new BaseArray(newArr));
     }
 
     private int getNewSize() {
-        Object[] presentArr = smartArray.toArray();
+        Object[] presentArr = getSmartArray().toArray();
         int counter = 0;
         for (int i = 0; i < presentArr.length; i++) {
             boolean isInArray = false;
@@ -37,7 +37,7 @@ public class DistinctDecorator extends SmartArrayDecorator {
         Object[] newArr = new Object[size];
 
         // Write data
-        Object[] presentArr = smartArray.toArray();
+        Object[] presentArr = getSmartArray().toArray();
         int counter = 0;
         for (int i = 0; i < presentArr.length; i++) {
             boolean isInArray = false;
@@ -57,7 +57,7 @@ public class DistinctDecorator extends SmartArrayDecorator {
 
     @Override
     public Object[] toArray() {
-        return this.smartArray.toArray();
+        return this.getSmartArray().toArray();
     }
 
     @Override
@@ -67,6 +67,6 @@ public class DistinctDecorator extends SmartArrayDecorator {
 
     @Override
     public int size() {
-        return this.smartArray.size();
+        return this.getSmartArray().size();
     }
 }

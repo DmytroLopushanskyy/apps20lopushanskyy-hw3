@@ -14,12 +14,12 @@ public class SortDecorator extends SmartArrayDecorator {
         // Sort the array
         Arrays.sort(newArr, cmp);
 
-        this.smartArray = new BaseArray(newArr);
+        this.setSmartArray(new BaseArray(newArr));
     }
 
     @Override
     public Object[] toArray() {
-        return this.smartArray.toArray();
+        return this.getSmartArray().toArray();
     }
 
     @Override
@@ -29,6 +29,6 @@ public class SortDecorator extends SmartArrayDecorator {
 
     @Override
     public int size() {
-        return this.smartArray.size();
+        return this.getSmartArray().size();
     }
 }

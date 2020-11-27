@@ -13,12 +13,12 @@ public class FilterDecorator extends SmartArrayDecorator {
         // Create this array
         Object[] newArr = createArray(counter, pr);
 
-        this.smartArray = new BaseArray(newArr);
+        this.setSmartArray(new BaseArray(newArr));
     }
 
     private int getNewSize(MyPredicate pr) {
         int counter = 0;
-        for(Object obj: smartArray.toArray()) {
+        for (Object obj: getSmartArray().toArray()) {
             if (pr.test(obj)) {
                 counter += 1;
             }
@@ -31,7 +31,7 @@ public class FilterDecorator extends SmartArrayDecorator {
 
         // Write data
         int counter = 0;
-        for(Object obj: smartArray.toArray()) {
+        for (Object obj: getSmartArray().toArray()) {
             if (pr.test(obj)) {
                 newArr[counter] = obj;
                 counter += 1;
@@ -42,7 +42,7 @@ public class FilterDecorator extends SmartArrayDecorator {
 
     @Override
     public Object[] toArray() {
-        return this.smartArray.toArray();
+        return this.getSmartArray().toArray();
     }
 
     @Override
@@ -52,6 +52,6 @@ public class FilterDecorator extends SmartArrayDecorator {
 
     @Override
     public int size() {
-        return this.smartArray.size();
+        return this.getSmartArray().size();
     }
 }
