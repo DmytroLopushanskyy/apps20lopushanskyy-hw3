@@ -10,8 +10,8 @@ import java.util.Arrays;
 public class SmartArrayApp {
 
     public static Integer[]
-            filterPositiveIntegersSortAndMultiplyBy2(Integer[] integers) {
-                
+        filterPositiveIntegersSortAndMultiplyBy2(Integer[] integers) {
+
         MyPredicate pr = new MyPredicate() {
             @Override
             public boolean test(Object t) {
@@ -51,12 +51,14 @@ public class SmartArrayApp {
     }
 
     public static String[]
-            findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(Student[] students) {
+        findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(
+                Student[] students) {
         // Select those who are 2nd year students
         MyPredicate select2ndYear = new MyPredicate() {
             @Override
             public boolean test(Object t) {
-                return ((Student) t).getYear() == 2 && ((Student) t).getGPA() >= 4;
+                return ((Student) t).getYear() == 2 &&
+                        ((Student) t).getGPA() >= 4;
             }
         };
 
@@ -72,20 +74,21 @@ public class SmartArrayApp {
         MyComparator cmpBySurname = new MyComparator() {
             @Override
             public int compare(Object st1, Object st2) {
-                return ((Student) st1).getSurname().compareTo(((Student) st2).getSurname());
+                return ((Student) st1).getSurname()
+                        .compareTo(((Student) st2).getSurname());
             }
         };
 
-        SmartArray studentSmartArray = new BaseArray(students);
+        SmartArray studSmartArray = new BaseArray(students);
 
-        studentSmartArray = new FilterDecorator(studentSmartArray, select2ndYear);
-        studentSmartArray = new SortDecorator(studentSmartArray, cmpBySurname);
-        studentSmartArray = new MapDecorator(studentSmartArray, objToString);
+        studSmartArray = new FilterDecorator(studSmartArray, select2ndYear);
+        studSmartArray = new SortDecorator(studSmartArray, cmpBySurname);
+        studSmartArray = new MapDecorator(studSmartArray, objToString);
 
         // Select distinct
-        studentSmartArray = new DistinctDecorator(studentSmartArray);
+        studSmartArray = new DistinctDecorator(studSmartArray);
 
-        Object[] result = studentSmartArray.toArray();
+        Object[] result = studSmartArray.toArray();
         return Arrays.copyOf(result, result.length, String[].class);
     }
 }

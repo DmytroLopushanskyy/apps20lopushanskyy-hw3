@@ -2,7 +2,6 @@ package ua.edu.ucu;
 
 
 class Student {
-
     private double GPA;
     private int year;
     private String name;
@@ -33,7 +32,8 @@ class Student {
 
     @Override
     public String toString() {
-        return "Student{name=" + name + ", surname=" + surname + ", " + "GPA=" + GPA + ", year=" + year + '}';
+        return "Student{name=" + name + ", surname=" +
+                surname + ", " + "GPA=" + GPA + ", year=" + year + '}';
     }
 
     public boolean equals(Student obj) {
