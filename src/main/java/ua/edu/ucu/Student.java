@@ -36,4 +36,10 @@ class Student {
         return "Student{name=" + name + ", surname=" + surname + ", " + "GPA=" + GPA + ", year=" + year + '}';
     }
 
+    public boolean equals(Student obj) {
+        return (this.name.equals(obj.name) &&
+                (this.year == obj.year) &&
+                (this.GPA == obj.GPA) &&
+                (this.surname.equals(obj.surname)));
+    }
 }

@@ -3,6 +3,9 @@ package ua.edu.ucu;
 import ua.edu.ucu.functions.MyComparator;
 import ua.edu.ucu.functions.MyFunction;
 import ua.edu.ucu.functions.MyPredicate;
+import ua.edu.ucu.smartarr.*;
+
+import java.util.Arrays;
 
 public class SmartArrayApp {
 
@@ -49,10 +52,40 @@ public class SmartArrayApp {
 
     public static String[]
             findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(Student[] students) {
+        // Select those who are 2nd year students
+        MyPredicate select2ndYear = new MyPredicate() {
+            @Override
+            public boolean test(Object t) {
+                return ((Student) t).getYear() == 2 && ((Student) t).getGPA() >= 4;
+            }
+        };
 
-        // Hint: to convert Object[] to String[] - use the following code
-        //Object[] result = studentSmartArray.toArray();
-        //return Arrays.copyOf(result, result.length, String[].class);
-        return null;
+        // To String
+        MyFunction objToString = new MyFunction() {
+            @Override
+            public Object apply(Object st) {
+                return ((Student) st).getSurname() + " " + ((Student) st).getName();
+            }
+        };
+
+        // Sort by Surname
+        MyComparator cmpBySurname = new MyComparator() {
+            @Override
+            public int compare(Object st1, Object st2) {
+                return ((Student) st1).getSurname().compareTo(((Student) st2).getSurname());
+            }
+        };
+
+        SmartArray studentSmartArray = new BaseArray(students);
+
+        studentSmartArray = new FilterDecorator(studentSmartArray, select2ndYear);
+        studentSmartArray = new SortDecorator(studentSmartArray, cmpBySurname);
+        studentSmartArray = new MapDecorator(studentSmartArray, objToString);
+
+        // Select distinct
+        studentSmartArray = new DistinctDecorator(studentSmartArray);
+
+        Object[] result = studentSmartArray.toArray();
+        return Arrays.copyOf(result, result.length, String[].class);
     }
 }
