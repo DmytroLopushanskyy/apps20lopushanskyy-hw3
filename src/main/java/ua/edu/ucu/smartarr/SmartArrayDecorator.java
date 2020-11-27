@@ -12,7 +12,7 @@ abstract class SmartArrayDecorator implements SmartArray {
         return this.smartArray;
     }
 
-    public void setSmartArray(SmartArray smartArray) {
-        this.smartArray = smartArray;
+    public void setSmartArray(SmartArray smartArr) {
+        this.smartArray = smartArr;
     }
 }
